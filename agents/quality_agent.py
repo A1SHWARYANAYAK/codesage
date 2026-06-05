@@ -1,3 +1,5 @@
+import json
+
 from github_utils.client import get_github_client
 from github_utils.parser import (
     parse_repository_url,
@@ -7,29 +9,32 @@ from github_utils.repository import (
 )
 from github_utils.llm import (
     get_gemini_client,
+    clean_json_response,
 )
-import json
 
 from agents.schemas import (
-    ArchitectureAnalysis,
+    QualityAnalysis,
 )
 
-
-def analyze_repository(repo_url: str):
+def analyze_quality(repo_url: str):
     github_client = get_github_client()
 
-    parsed = parse_repository_url(repo_url)
+    parsed = parse_repository_url(
+        repo_url
+    )
 
     repo = github_client.get_repo(
         f"{parsed['owner']}/{parsed['repo']}"
     )
 
-    context = build_repository_context(repo)
+    context = build_repository_context(
+        repo
+    )
 
     client = get_gemini_client()
 
     prompt = f"""
-You are a software architecture reviewer.
+You are a senior software engineer.
 
 Repository Metadata:
 {context["metadata"]}
@@ -40,22 +45,22 @@ Languages:
 README:
 {context["readme"][:1000]}
 
-Analyze this repository.
+Evaluate the repository quality.
 
 Rules:
 1. Return ONLY valid JSON.
-2. Do not use markdown.
-3. Do not use code fences.
-4. Do not add explanations before or after the JSON.
+2. Do not add explanations.
+3. Do not add markdown.
+4. Do not add code fences.
 
 Required format:
 
 {{
-  "project_type": "",
-  "architecture": "",
-  "primary_technologies": [],
-  "key_observations": [],
-  "confidence_score": 0
+  "maintainability_score": 0,
+  "documentation_score": 0,
+  "code_organization_score": 0,
+  "strengths": [],
+  "weaknesses": []
 }}
 """
 
@@ -65,11 +70,15 @@ Required format:
             contents=prompt,
         )
 
-        data = json.loads(
+        cleaned = clean_json_response(
             response.text
         )
 
-        return ArchitectureAnalysis(
+        data = json.loads(
+            cleaned
+        )
+
+        return QualityAnalysis(
             **data
         )
 
