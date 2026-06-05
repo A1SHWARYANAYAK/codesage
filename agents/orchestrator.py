@@ -16,6 +16,10 @@ from agents.security_agent import (
     analyze_security,
 )
 
+from agents.dependency_agent import (
+    analyze_dependencies,
+)
+
 
 def run_analysis(repo_url: str):
     start_time = time.time()
@@ -23,7 +27,7 @@ def run_analysis(repo_url: str):
     result = {}
 
     with ThreadPoolExecutor(
-        max_workers=3
+        max_workers=4
     ) as executor:
 
         architecture_future = (
@@ -43,6 +47,13 @@ def run_analysis(repo_url: str):
         security_future = (
             executor.submit(
                 analyze_security,
+                repo_url,
+            )
+        )
+
+        dependency_future = (
+            executor.submit(
+                analyze_dependencies,
                 repo_url,
             )
         )
@@ -73,6 +84,15 @@ def run_analysis(repo_url: str):
             result["security"] = {
                 "error": str(e)
             }
+
+        try:
+            result["dependency"] = (
+                dependency_future.result()
+            )
+        except Exception as e:
+            result["dependency"] = {
+                "error": str(e)
+            }    
 
     result["execution_time"] = round(
         time.time() - start_time,

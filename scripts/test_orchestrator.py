@@ -21,3 +21,6 @@ print(result["quality"])
 
 print("\nSECURITY:")
 print(result["security"])
+
+print("\nDEPENDENCY:")
+print(result["dependency"])

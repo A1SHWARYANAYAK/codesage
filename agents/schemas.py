@@ -22,3 +22,12 @@ class SecurityAnalysis(BaseModel):
 
     findings: list[str]
     recommendations: list[str]    
+
+class DependencyAnalysis(BaseModel):
+    dependency_risk_score: float
+
+    major_dependencies: list[str]
+
+    observations: list[str]
+
+    recommendations: list[str]    

@@ -32,6 +32,15 @@ def build_repository_context(repo):
             for key, value in extract_languages(repo).items()
             if key != "url"
         },
+        "structure": extract_repository_structure(
+            repo
+        ),
+        "dependency_files": detect_dependency_files(
+            repo
+        ),
+        "repository_map": extract_repository_map(
+            repo
+        ),
     }
 
 def get_repository_contents(repo):
