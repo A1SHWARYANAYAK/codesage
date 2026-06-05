@@ -8,6 +8,7 @@ class ArchitectureAnalysis(BaseModel):
     key_observations: list[str]
     confidence_score: float
 
+
 class QualityAnalysis(BaseModel):
     maintainability_score: float
     documentation_score: float
