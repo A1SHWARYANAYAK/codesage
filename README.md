@@ -1,27 +1,27 @@
 # CodeSage
 
-CodeSage is a LangGraph-powered multi-agent repository intelligence platform that analyzes GitHub repositories using Large Language Models (LLMs).
+CodeSage is a LangGraph-powered multi-agent repository intelligence platform that helps developers quickly evaluate unfamiliar GitHub repositories using AI-generated architecture, quality, security, and dependency analysis.
 
-Given a GitHub repository URL, CodeSage collects repository metadata, README content, project structure, dependency information, and language statistics before running specialized AI agents that generate architecture, quality, security, and dependency assessments.
+Given a GitHub repository URL, CodeSage collects repository metadata, README content, project structure, dependency information, and language statistics before running specialized AI agents that generate structured repository assessments.
 
 ---
 
 ## Features
 
-- GitHub repository intelligence
-- Repository metadata extraction
-- README analysis
-- Repository structure analysis
-- Dependency file detection
-- Architecture analysis agent
-- Quality analysis agent
-- Security analysis agent
-- Dependency analysis agent
-- LangGraph workflow orchestration
-- Shared repository context
-- Structured outputs using Pydantic
-- Markdown report generation
-- Command-line interface (CLI)
+* GitHub repository intelligence
+* Repository metadata extraction
+* README analysis
+* Repository structure analysis
+* Dependency file detection
+* Architecture analysis agent
+* Quality analysis agent
+* Security analysis agent
+* Dependency analysis agent
+* LangGraph workflow orchestration
+* Shared repository context
+* Structured outputs using Pydantic
+* Markdown report generation
+* Command-line interface (CLI)
 
 ---
 
@@ -56,6 +56,53 @@ Repository Context Builder
         ▼
    Final Analysis
 ```
+
+---
+
+## Example Use Case
+
+Imagine discovering a new open-source AI framework and wanting a quick technical assessment before spending time reading documentation and source code.
+
+For example:
+
+```bash
+python main.py https://github.com/langchain-ai/langgraph
+```
+
+Instead of manually reviewing the repository structure, README, technologies, and dependencies, CodeSage generates a consolidated analysis covering:
+
+* Architecture
+* Code Quality
+* Security
+* Dependencies
+
+Example insights:
+
+```text
+Architecture:
+AI Agent Orchestration Framework
+
+Primary Technologies:
+- Python
+- Pydantic
+- LangChain
+
+Quality:
+9/10
+
+Security:
+8/10
+
+Dependency Risk:
+Low
+
+Key Observations:
+- Designed for stateful AI agents
+- Strong LangChain integration
+- Mature open-source ecosystem
+```
+
+This allows developers to quickly evaluate unfamiliar repositories before investing time in a deeper review.
 
 ---
 
@@ -168,39 +215,39 @@ Markdown Report
 
 Analyzes:
 
-- Project type
-- Software architecture
-- Primary technologies
-- Technical observations
+* Project type
+* Software architecture
+* Primary technologies
+* Technical observations
 
 ### Quality Agent
 
 Analyzes:
 
-- Maintainability
-- Documentation quality
-- Code organization
-- Strengths
-- Weaknesses
+* Maintainability
+* Documentation quality
+* Code organization
+* Strengths
+* Weaknesses
 
 ### Security Agent
 
 Analyzes:
 
-- Security posture
-- Repository hygiene
-- Secret exposure risks
-- Security recommendations
+* Security posture
+* Repository hygiene
+* Secret exposure risks
+* Security recommendations
 
 ### Dependency Agent
 
 Analyzes:
 
-- Dependency complexity
-- Dependency maturity
-- Ecosystem stability
-- Maintenance risks
-- Dependency recommendations
+* Dependency complexity
+* Dependency maturity
+* Ecosystem stability
+* Maintenance risks
+* Dependency recommendations
 
 ---
 
@@ -239,22 +286,22 @@ Analysis Complete
 
 ## Tech Stack
 
-- Python
-- LangGraph
-- Gemini API
-- PyGithub
-- Pydantic
-- python-dotenv
+* Python
+* LangGraph
+* Gemini API
+* PyGithub
+* Pydantic
+* python-dotenv
 
 ---
 
 ## Future Improvements
 
-- JSON export
-- Parallel LangGraph execution
-- License analysis agent
-- Dependency vulnerability scanning
-- Web dashboard
+* JSON export
+* Parallel LangGraph execution
+* License analysis agent
+* Dependency vulnerability scanning
+* Web dashboard
 
 ---
 
@@ -262,12 +309,12 @@ Analysis Complete
 
 CodeSage demonstrates several AI engineering concepts:
 
-- Multi-agent system design
-- LangGraph workflow orchestration
-- Shared-state agent execution
-- Structured LLM outputs using Pydantic
-- GitHub repository intelligence
-- Automated software analysis pipelines
+* Multi-agent system design
+* LangGraph workflow orchestration
+* Shared-state agent execution
+* Structured LLM outputs using Pydantic
+* GitHub repository intelligence
+* Automated software analysis pipelines
 
 ---
 
