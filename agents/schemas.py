@@ -16,3 +16,9 @@ class QualityAnalysis(BaseModel):
 
     strengths: list[str]
     weaknesses: list[str]    
+
+class SecurityAnalysis(BaseModel):
+    security_score: float
+
+    findings: list[str]
+    recommendations: list[str]    

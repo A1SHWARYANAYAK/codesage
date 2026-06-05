@@ -8,8 +8,16 @@ result = run_analysis(
 
 print(type(result))
 
+print(
+    f"\nExecution Time: "
+    f"{result['execution_time']} seconds"
+)
+
 print("\nARCHITECTURE:")
 print(result["architecture"])
 
 print("\nQUALITY:")
 print(result["quality"])
+
+print("\nSECURITY:")
+print(result["security"])
