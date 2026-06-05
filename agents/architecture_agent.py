@@ -1,10 +1,3 @@
-from github_utils.client import get_github_client
-from github_utils.parser import (
-    parse_repository_url,
-)
-from github_utils.repository import (
-    build_repository_context,
-)
 from github_utils.llm import (
     get_gemini_client,
 )
@@ -15,17 +8,7 @@ from agents.schemas import (
 )
 
 
-def analyze_repository(repo_url: str):
-    github_client = get_github_client()
-
-    parsed = parse_repository_url(repo_url)
-
-    repo = github_client.get_repo(
-        f"{parsed['owner']}/{parsed['repo']}"
-    )
-
-    context = build_repository_context(repo)
-
+def analyze_repository(context: dict):
     client = get_gemini_client()
 
     prompt = f"""

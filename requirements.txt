@@ -2,3 +2,7 @@ PyGithub==2.9.1
 python-dotenv==1.2.2
 pydantic==2.13.4
 google-genai==2.8.0
+langgraph==1.2.4
+langgraph-checkpoint==4.1.1
+langgraph-prebuilt==1.1.0
+langgraph-sdk==0.4.2

@@ -1,23 +1,29 @@
 # CodeSage
 
-CodeSage is a multi-agent repository analysis system that uses GitHub data and Large Language Models (LLMs) to automatically analyze software repositories.
+CodeSage is a LangGraph-powered multi-agent repository intelligence platform that analyzes GitHub repositories using Large Language Models (LLMs).
 
-Given a GitHub repository URL, CodeSage extracts repository metadata, README content, and project structure, then uses specialized AI agents to generate architecture, quality, and security assessments.
+Given a GitHub repository URL, CodeSage collects repository metadata, README content, project structure, dependency information, and language statistics before running specialized AI agents that generate architecture, quality, security, and dependency assessments.
+
+---
 
 ## Features
 
-* GitHub repository intelligence
-* Repository metadata extraction
-* README analysis
-* Architecture analysis agent
-* Quality analysis agent
-* Security analysis agent
-* Parallel multi-agent execution
-* Structured outputs using Pydantic
-* Multi-agent orchestration workflow
-* Markdown report generation
-* Command-line interface (CLI)
-* Execution time tracking
+- GitHub repository intelligence
+- Repository metadata extraction
+- README analysis
+- Repository structure analysis
+- Dependency file detection
+- Architecture analysis agent
+- Quality analysis agent
+- Security analysis agent
+- Dependency analysis agent
+- LangGraph workflow orchestration
+- Shared repository context
+- Structured outputs using Pydantic
+- Markdown report generation
+- Command-line interface (CLI)
+
+---
 
 ## Architecture
 
@@ -28,27 +34,30 @@ GitHub Repository
 Repository Context Builder
         │
         ▼
- ┌───────────────────┐
- │ Architecture Agent│
- └───────────────────┘
-        │
- ┌───────────────────┐
- │   Quality Agent   │
- └───────────────────┘
-        │
- ┌───────────────────┐
- │  Security Agent   │
- └───────────────────┘
+      LangGraph
         │
         ▼
- Parallel Orchestrator
+ ┌───────────────┐
+ │ Architecture  │
+ └───────────────┘
+        │
+ ┌───────────────┐
+ │ Quality       │
+ └───────────────┘
+        │
+ ┌───────────────┐
+ │ Security      │
+ └───────────────┘
+        │
+ ┌───────────────┐
+ │ Dependency    │
+ └───────────────┘
         │
         ▼
    Final Analysis
-        │
-        ▼
- Markdown Report
 ```
+
+---
 
 ## Project Structure
 
@@ -59,8 +68,13 @@ codesage/
 │   ├── architecture_agent.py
 │   ├── quality_agent.py
 │   ├── security_agent.py
+│   ├── dependency_agent.py
 │   ├── orchestrator.py
 │   └── schemas.py
+│
+├── graphs/
+│   ├── __init__.py
+│   └── repository_graph.py
 │
 ├── github_utils/
 │   ├── client.py
@@ -78,87 +92,117 @@ codesage/
 └── README.md
 ```
 
+---
+
 ## Installation
+
+Clone the repository:
 
 ```bash
 git clone https://github.com/A1SHWARYANAYAK/codesage.git
 
 cd codesage
+```
 
+Install dependencies:
+
+```bash
 pip install -r requirements.txt
 ```
 
+---
+
 ## Environment Variables
 
-Create a `.env` file:
+Create a `.env` file in the project root:
 
 ```env
 GITHUB_TOKEN=your_github_token
 GEMINI_API_KEY=your_gemini_api_key
 ```
 
+---
+
 ## Usage
+
+Analyze a GitHub repository:
 
 ```bash
 python main.py https://github.com/langchain-ai/langgraph
 ```
 
-## Example Workflow
+---
+
+## Workflow
 
 ```text
 Repository URL
-      ↓
+      │
+      ▼
 GitHub API
-      ↓
-Repository Context
-      ↓
- ┌────────────────┐
- │ Architecture   │
- └────────────────┘
-      ↓
- ┌────────────────┐
- │ Quality        │
- └────────────────┘
-      ↓
- ┌────────────────┐
- │ Security       │
- └────────────────┘
-      ↓
-Parallel Aggregation
-      ↓
-Combined Report
+      │
+      ▼
+Repository Context Builder
+      │
+      ▼
+LangGraph Workflow
+      │
+      ▼
+Architecture Agent
+Quality Agent
+Security Agent
+Dependency Agent
+      │
+      ▼
+Combined Analysis
+      │
+      ▼
+Markdown Report
 ```
 
-## Current Agents
+---
+
+## Analysis Agents
 
 ### Architecture Agent
 
 Analyzes:
 
-* Project type
-* Software architecture
-* Primary technologies
-* Key technical observations
+- Project type
+- Software architecture
+- Primary technologies
+- Technical observations
 
 ### Quality Agent
 
 Analyzes:
 
-* Maintainability
-* Documentation quality
-* Code organization
-* Strengths
-* Weaknesses
+- Maintainability
+- Documentation quality
+- Code organization
+- Strengths
+- Weaknesses
 
 ### Security Agent
 
 Analyzes:
 
-* Security posture
-* Dependency risks
-* Secret exposure risks
-* Repository hygiene
-* Security recommendations
+- Security posture
+- Repository hygiene
+- Secret exposure risks
+- Security recommendations
+
+### Dependency Agent
+
+Analyzes:
+
+- Dependency complexity
+- Dependency maturity
+- Ecosystem stability
+- Maintenance risks
+- Dependency recommendations
+
+---
 
 ## Example Output
 
@@ -170,46 +214,62 @@ CodeSage Repository Analysis
 Repository:
 https://github.com/langchain-ai/langgraph
 
-Execution Time: 3.42 seconds
-
 ARCHITECTURE
 --------------------------------------------------
 Project Type: AI Agent Framework
-...
 
 QUALITY
 --------------------------------------------------
 Maintainability Score: 9.0
-...
 
 SECURITY
 --------------------------------------------------
 Security Score: 8.5
-...
+
+DEPENDENCY
+--------------------------------------------------
+Dependency Risk Score: 8.0
 
 ==================================================
 Analysis Complete
 ==================================================
 ```
 
+---
+
 ## Tech Stack
 
-* Python
-* Gemini API
-* PyGithub
-* Pydantic
-* python-dotenv
-* concurrent.futures
+- Python
+- LangGraph
+- Gemini API
+- PyGithub
+- Pydantic
+- python-dotenv
+
+---
 
 ## Future Improvements
 
-* Dependency analysis agent
-* License compliance agent
-* JSON export
-* PDF report generation
-* LangGraph orchestration
-* Web dashboard
-* Additional repository intelligence agents
+- JSON export
+- Parallel LangGraph execution
+- License analysis agent
+- Dependency vulnerability scanning
+- Web dashboard
+
+---
+
+## Why CodeSage?
+
+CodeSage demonstrates several AI engineering concepts:
+
+- Multi-agent system design
+- LangGraph workflow orchestration
+- Shared-state agent execution
+- Structured LLM outputs using Pydantic
+- GitHub repository intelligence
+- Automated software analysis pipelines
+
+---
 
 ## License
 
