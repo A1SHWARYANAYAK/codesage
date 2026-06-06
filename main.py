@@ -78,6 +78,7 @@ def print_quality(
     for weakness in analysis.weaknesses:
         print(f"- {weakness}")
 
+
 def print_security(
     analysis: SecurityAnalysis,
 ):
@@ -99,7 +100,8 @@ def print_security(
     for recommendation in (
         analysis.recommendations
     ):
-        print(f"- {recommendation}")        
+        print(f"- {recommendation}")
+
 
 def print_dependency(
     analysis: DependencyAnalysis,
@@ -133,7 +135,7 @@ def print_dependency(
     for recommendation in (
         analysis.recommendations
     ):
-        print(f"- {recommendation}")        
+        print(f"- {recommendation}")
 
 
 def main():
@@ -189,7 +191,7 @@ def main():
             quality
         )
 
-        security = result.get(
+    security = result.get(
         "security"
     )
 
@@ -203,9 +205,9 @@ def main():
 
         print_security(
             security
-        )    
+        )
 
-        dependency = result.get(
+    dependency = result.get(
         "dependency"
     )
 
@@ -219,7 +221,7 @@ def main():
 
         print_dependency(
             dependency
-        )    
+        )
 
     successful = 0
 
@@ -255,7 +257,7 @@ def main():
         if failed:
             print(
                 f"{failed} analysis unavailable"
-            ) 
+            )
 
     print("\n" + "=" * 50)
     print("Analysis Complete")
