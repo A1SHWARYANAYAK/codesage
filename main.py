@@ -7,6 +7,8 @@ from agents.orchestrator import (
 from agents.schemas import (
     ArchitectureAnalysis,
     QualityAnalysis,
+    SecurityAnalysis,
+    DependencyAnalysis,
 )
 
 
@@ -76,6 +78,63 @@ def print_quality(
     for weakness in analysis.weaknesses:
         print(f"- {weakness}")
 
+def print_security(
+    analysis: SecurityAnalysis,
+):
+    print("\nSECURITY")
+    print("-" * 50)
+
+    print(
+        f"Security Score: "
+        f"{analysis.security_score}"
+    )
+
+    print("\nFindings:")
+
+    for finding in analysis.findings:
+        print(f"- {finding}")
+
+    print("\nRecommendations:")
+
+    for recommendation in (
+        analysis.recommendations
+    ):
+        print(f"- {recommendation}")        
+
+def print_dependency(
+    analysis: DependencyAnalysis,
+):
+    print("\nDEPENDENCY")
+    print("-" * 50)
+
+    print(
+        f"Dependency Risk Score: "
+        f"{analysis.dependency_risk_score}"
+    )
+
+    print(
+        "\nMajor Dependencies:"
+    )
+
+    for dependency in (
+        analysis.major_dependencies
+    ):
+        print(f"- {dependency}")
+
+    print("\nObservations:")
+
+    for observation in (
+        analysis.observations
+    ):
+        print(f"- {observation}")
+
+    print("\nRecommendations:")
+
+    for recommendation in (
+        analysis.recommendations
+    ):
+        print(f"- {recommendation}")        
+
 
 def main():
     if len(sys.argv) != 2:
@@ -130,6 +189,38 @@ def main():
             quality
         )
 
+        security = result.get(
+        "security"
+    )
+
+    security_success = False
+
+    if isinstance(
+        security,
+        SecurityAnalysis,
+    ):
+        security_success = True
+
+        print_security(
+            security
+        )    
+
+        dependency = result.get(
+        "dependency"
+    )
+
+    dependency_success = False
+
+    if isinstance(
+        dependency,
+        DependencyAnalysis,
+    ):
+        dependency_success = True
+
+        print_dependency(
+            dependency
+        )    
+
     successful = 0
 
     if architecture_success:
@@ -138,7 +229,13 @@ def main():
     if quality_success:
         successful += 1
 
-    failed = 2 - successful
+    if security_success:
+        successful += 1
+
+    if dependency_success:
+        successful += 1
+
+    failed = 4 - successful
 
     print("\n" + "-" * 50)
 
